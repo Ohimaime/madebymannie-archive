@@ -1,0 +1,60 @@
+@import "tailwindcss" source(".");
+
+/* Tokens from ui-ux-pro-max: "Kinetic Brutalism" (Space Grotesk) + "Brutalist Raw" (Space Mono),
+   brutalism palette restricted to black / white / red. */
+@theme {
+  --font-display: "Space Grotesk", "Space Mono", monospace;
+  --font-mono: "Space Mono", "Space Grotesk", monospace;
+
+  --color-ink: #000000;
+  --color-paper: #ffffff;
+  --color-signal: #ff0000;
+  --color-rule: rgb(0 0 0 / 0.14);
+
+  --ease-step: steps(4, end);
+}
+
+@layer base {
+  html {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: var(--color-signal);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-signal);
+    outline-offset: 3px;
+  }
+
+  * {
+    border-radius: 0 !important;
+  }
+}
+
+@utility label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.4;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* The view switcher is the single rounded element on the page — beats the zero-radius reset. */
+.pill {
+  border-radius: 9999px !important;
+}
+
+html {
+  scrollbar-gutter: stable;
+}
+
+/* Page scroll is frozen (not reset) while the dossier is open. */
+html.dossier-open {
+  overflow: hidden;
+}
